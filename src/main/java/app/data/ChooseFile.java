@@ -12,6 +12,9 @@ public class ChooseFile {
     String pathTest = "C:\\segregator\\TEST\\";
     String pathDev = "C:\\segregator\\DEV\\";
     ArrayList<File> files;
+    public static int countTest = 0;
+    public static int countDev = 0;
+    StatisticsSettings statisticsSettings = new StatisticsSettings();
 
 
     public void moveFileToAnotherFolder() throws IOException {
@@ -27,16 +30,20 @@ public class ChooseFile {
 
             if (extension.equals(".xml")) {
                 var.renameTo(new File(pathDev + name + extension));
+                countDev++;
             } else if (extension.equals(".jar")){
                 BasicFileAttributes attr = Files.readAttributes(var.toPath(), BasicFileAttributes.class);
                 if (attr.creationTime().toMillis() % 2 == 0) {
                     var.renameTo(new File(pathDev + name + extension));
+                    countDev++;
                 } else {
                     var.renameTo(new File(pathTest + name + extension));
+                    countTest++;
                 }
             } else {
                 System.out.println("Do nothing");
             }
+            statisticsSettings.saveSettings();
         }
 
     }

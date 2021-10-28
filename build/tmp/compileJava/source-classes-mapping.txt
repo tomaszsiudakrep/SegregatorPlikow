@@ -6,7 +6,9 @@ app/controller/ExitController.java
  app.controller.ExitController
 app/controller/CreateDirectoryController.java
  app.controller.CreateDirectoryController
-app/data/ChooseFile.java
- app.data.ChooseFile
+app/data/StatisticsSettings.java
+ app.data.StatisticsSettings
 app/Launcher.java
  app.Launcher
+app/data/ChooseFile.java
+ app.data.ChooseFile

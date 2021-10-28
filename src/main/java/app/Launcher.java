@@ -25,7 +25,7 @@ public class Launcher extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
         GridPane gridMenu = new GridPane();
             gridMenu.setAlignment(Pos.CENTER);
             gridMenu.setBackground(backgroundSettings.defaultBackground());
@@ -37,7 +37,6 @@ public class Launcher extends Application {
             exitMenuButton.setPrefWidth(150);
             exitMenuButton.setPrefHeight(50);
         Button segregateFilesButton = new Button("Segregate files");
-            segregateFilesButton.setDisable(true);
             segregateFilesButton.setPrefWidth(150);
             segregateFilesButton.setPrefHeight(50);
 
@@ -47,15 +46,11 @@ public class Launcher extends Application {
 
         Scene sceneMenu = new Scene(gridMenu, BackgroundSettings.width, BackgroundSettings.height, Color.BLACK);
         primaryStage.setScene(sceneMenu);
-        primaryStage.setTitle("Segregator plikow");
+        primaryStage.setTitle("Files binder");
         primaryStage.setResizable(false);
         primaryStage.show();
 
-        createFoldersButton.setOnAction(event -> {
-            createDirectoryController.createAllFolders();
-            segregateFilesButton.setDisable(false);
-            createFoldersButton.setDisable(true);
-        });
+        createFoldersButton.setOnAction(event -> createDirectoryController.createAllFolders());
         exitMenuButton.setOnAction(actionEvent -> exitController.exit());
         segregateFilesButton.setOnAction(event -> {
             try {
