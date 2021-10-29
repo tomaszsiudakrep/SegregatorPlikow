@@ -7,7 +7,7 @@ import java.io.UnsupportedEncodingException;
 
 public class StatisticsSettings {
 
-    String pathHome = "C:\\segregator\\HOME\\";
+    String pathHome = SelectDirectory.selectedDirectory + "\\HOME\\";
     private int count = 0;
 
     public void saveSettings() throws FileNotFoundException, UnsupportedEncodingException {

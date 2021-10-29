@@ -8,9 +8,9 @@ import java.util.ArrayList;
 
 public class ChooseFile {
 
-    String pathHome = "C:\\segregator\\HOME";
-    String pathTest = "C:\\segregator\\TEST\\";
-    String pathDev = "C:\\segregator\\DEV\\";
+    String pathHome = SelectDirectory.selectedDirectory + "\\HOME";
+    String pathTest = SelectDirectory.selectedDirectory + "\\TEST\\";
+    String pathDev = SelectDirectory.selectedDirectory + "\\DEV\\";
     ArrayList<File> files;
     public static int countTest = 0;
     public static int countDev = 0;
@@ -21,30 +21,34 @@ public class ChooseFile {
         files = new ArrayList<>();
         File repo = new File(pathHome);
         File[] fileList = repo.listFiles();
+        if (fileList != null) {
+            for (File var: fileList) {
+                String pathToFile = var.toString();
 
-        for (File var: fileList) {
-            String pathToFile = var.toString();
+                String extension = checkExtension(pathToFile);
+                String name = checkFileName(pathToFile);
 
-            String extension = checkExtension(pathToFile);
-            String name = checkFileName(pathToFile);
-
-            if (extension.equals(".xml")) {
-                var.renameTo(new File(pathDev + name + extension));
-                countDev++;
-            } else if (extension.equals(".jar")){
-                BasicFileAttributes attr = Files.readAttributes(var.toPath(), BasicFileAttributes.class);
-                if (attr.creationTime().toMillis() % 2 == 0) {
+                if (extension.equals(".xml")) {
                     var.renameTo(new File(pathDev + name + extension));
                     countDev++;
+                } else if (extension.equals(".jar")){
+                    BasicFileAttributes attr = Files.readAttributes(var.toPath(), BasicFileAttributes.class);
+                    if (attr.creationTime().toMillis() % 2 == 0) {
+                        var.renameTo(new File(pathDev + name + extension));
+                        countDev++;
+                    } else {
+                        var.renameTo(new File(pathTest + name + extension));
+                        countTest++;
+                    }
                 } else {
-                    var.renameTo(new File(pathTest + name + extension));
-                    countTest++;
+                    System.out.println("Do nothing");
                 }
-            } else {
-                System.out.println("Do nothing");
+                statisticsSettings.saveSettings();
             }
-            statisticsSettings.saveSettings();
+        } else {
+            System.out.println("Wrong path or directory is empty.");
         }
+
 
     }
 
@@ -54,7 +58,8 @@ public class ChooseFile {
     }
 
     public String checkFileName(String file) {
-        String name = file.substring(19, file.indexOf("."));
-        return name;
+        String name = file.substring(file.indexOf("HOME\\"),file.indexOf("."));
+        String fullName = name.substring(5);
+        return fullName;
     }
 }

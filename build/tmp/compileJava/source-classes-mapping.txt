@@ -1,11 +1,15 @@
-app/data/BackgroundSettings.java
- app.data.BackgroundSettings
-app/data/Folders.java
- app.data.Folders
 app/controller/ExitController.java
  app.controller.ExitController
+app/data/BackgroundSettings.java
+ app.data.BackgroundSettings
 app/controller/CreateDirectoryController.java
  app.controller.CreateDirectoryController
+app/data/SelectDirectory.java
+ app.data.SelectDirectory
+app/data/Folders.java
+ app.data.Folders
+app/controller/SelectDirectoryController.java
+ app.controller.SelectDirectoryController
 app/data/StatisticsSettings.java
  app.data.StatisticsSettings
 app/Launcher.java
