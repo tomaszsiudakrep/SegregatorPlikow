@@ -7,7 +7,7 @@ import java.io.UnsupportedEncodingException;
 
 public class StatisticsSettings {
 
-    String pathHome = SelectDirectory.selectedDirectory + "\\HOME\\";
+    String pathHome = SelectDirectory.selectedDirectory + "\\";
     private int count = 0;
 
     public void saveSettings() throws FileNotFoundException, UnsupportedEncodingException {

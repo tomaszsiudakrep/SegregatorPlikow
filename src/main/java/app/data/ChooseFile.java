@@ -8,14 +8,13 @@ import java.util.ArrayList;
 
 public class ChooseFile {
 
-    String pathHome = SelectDirectory.selectedDirectory + "\\HOME";
+    String pathHome = SelectDirectory.selectedDirectory + "\\MainFolder";
     String pathTest = SelectDirectory.selectedDirectory + "\\TEST\\";
     String pathDev = SelectDirectory.selectedDirectory + "\\DEV\\";
     ArrayList<File> files;
     public static int countTest = 0;
     public static int countDev = 0;
     StatisticsSettings statisticsSettings = new StatisticsSettings();
-
 
     public void moveFileToAnotherFolder() throws IOException {
         files = new ArrayList<>();
@@ -58,8 +57,8 @@ public class ChooseFile {
     }
 
     public String checkFileName(String file) {
-        String name = file.substring(file.indexOf("HOME\\"),file.indexOf("."));
-        String fullName = name.substring(5);
+        String name = file.substring(file.indexOf("MainFolder\\"),file.indexOf("."));
+        String fullName = name.substring(11);
         return fullName;
     }
 }

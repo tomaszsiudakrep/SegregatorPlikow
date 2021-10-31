@@ -11,6 +11,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -24,6 +25,7 @@ public class Launcher extends Application {
     CreateDirectoryController createDirectoryController = new CreateDirectoryController();
     SelectDirectoryController selectDirectoryController = new SelectDirectoryController();
     public static Label chosenLocalizationLabel;
+    public static TextField nameOfFolderTextField;
     public static Button createFoldersButton;
     public static Button segregateFilesButton;
 
@@ -55,9 +57,15 @@ public class Launcher extends Application {
             segregateFilesButton.setPrefWidth(200);
             segregateFilesButton.setPrefHeight(50);
             segregateFilesButton.setDisable(true);
+        nameOfFolderTextField = new TextField();
+            nameOfFolderTextField.setPrefWidth(200);
+            nameOfFolderTextField.setPrefHeight(25);
+            nameOfFolderTextField.setPromptText("Folder name");
+            nameOfFolderTextField.setStyle("-fx-text-fill: black");
 
         gridMenu.add(selectDirectoryToCreateNewFoldersButton, 10, 5);
         gridMenu.add(chosenLocalizationLabel, 10, 8);
+        gridMenu.add(nameOfFolderTextField, 10, 9);
         gridMenu.add(createFoldersButton, 10, 10);
         gridMenu.add(segregateFilesButton, 10, 15);
         gridMenu.add(exitMenuButton, 10, 20);
@@ -69,7 +77,8 @@ public class Launcher extends Application {
         primaryStage.show();
 
         selectDirectoryToCreateNewFoldersButton.setOnAction(event -> selectDirectoryController.selectDirectoryMain());
-        createFoldersButton.setOnAction(event -> createDirectoryController.createAllFolders());
+//        createFoldersButton.setOnAction(event -> createDirectoryController.createAllFolders());
+        createFoldersButton.setOnAction(event -> createDirectoryController.createFolder());
         exitMenuButton.setOnAction(actionEvent -> exitController.exit());
         segregateFilesButton.setOnAction(event -> {
             try {
